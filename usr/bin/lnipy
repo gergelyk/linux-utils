@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# path to this script
+target_path=$(realpath -m $0)
+
+# path to the link which is used to call this script
+link_path=$(realpath -s $0)
+
+if [ "$target_path" == "$link_path" ]
+  then
+  # this script called directly
+
+    # exactly one argument should be given
+    if [ $# != 1 ]
+      then
+        echo "Creates a symlink which can be used to fire your .ipy file."
+        echo "Proposed solution is useful when you would like to have IPython executing"
+        echo "your script, but at the same time you need to get rid of .ipy extension."
+        echo
+        echo "SYNTAX:"
+        echo $(basename $0) "yourfile.ipy"
+        echo
+        echo "DESCRIPTION:"
+        echo "Name of the symlink will correspod to .ipy file. You should not change it."
+        echo "The symlink will target this script. By calling the symlink you will fire .ipy"
+        echo "file. All the arguments will be forwarded to your .ipy script."
+        
+      exit 1
+    fi
+
+    # name of .ipy file which should be given as argument
+    # see bash substitutions to understant the syntax
+    ipy_filename="${1%%.*}"
+
+    # make a symlink to this script
+    # name of the symlink should be the same as the name of .ipy file
+    # given as the argument
+    ln -s "$target_path" "$ipy_filename"
+
+  else
+  # this script called by symlink
+
+    # call ipython to execute .ipy file of the same name as the
+    # name of the symlink that was used to call this script
+    # all the arguments will be forwarded to .ipy script
+    /usr/bin/env ipython $0.ipy "$@"
+fi
+
+
