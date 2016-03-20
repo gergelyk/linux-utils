@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# This script takes input file, reads the lines one by one and discards
+# these which start with hash. Then it takes the first line as a command
+# and remaining lines as arguments. The command with arguments is
+# executed, and the return value forwarded.
+#
+# Syntax: cmd file.cmd
+#
+# You can also use shebang syntax in .cmd file
+
+CODE=$(grep -Pv '^ *#.*' $1 | grep -Pv '^ *$')
+CMD=$(echo "$CODE" | tr '\n' ' ')
+
+echo -e "$CODE\n"
+bash -c "$CMD"
+exit $?
