@@ -1,6 +1,6 @@
 # ##############################################################################
 #
-# getapp 1.0.0
+# getapp 1.0.1
 #
 # Downloads an executable (BIN file) and executes it with arguments of the
 # script which sources this one. BIN files are cached for future reuse.
@@ -62,7 +62,7 @@ mkdir -p $CACHE_DIR
 # check if BIN file already exists in cache and if MD5 matches
 NEED_TO_DOWNLOAD=1
 if [[ -f $BIN_PATH ]]; then
-    if echo "$BIN_MD5 $BIN_PATH" | md5sum -c &> /dev/null; then
+    if echo "$BIN_MD5  $BIN_PATH" | md5sum -c &> /dev/null; then
         NEED_TO_DOWNLOAD=0
     else
         rm -f $BIN_PATH
