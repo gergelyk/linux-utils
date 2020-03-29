@@ -1,6 +1,6 @@
-# Miscellaneous Linux Utilities#
+# Miscellaneous Linux Utilities
 
-* cmd - calls Bash comands with long lists of parameters. See [description](http://krason.me/blog/cmd%20files.html).  
-* getapp - downloads and runs specified application.
-* lnipy - runs IPython scripts without .ipy extension. See [description](http://krason.me/blog/ipy%20extensions.html).  
-
+* cmd - Calls Bash comands with long lists of parameters.
+* brename - Renames group of files/directories in batch mode.
+* getapp - Downloads and runs specified application.
+* lnipy - Runs IPython scripts without .ipy extension.
